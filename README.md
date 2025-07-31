@@ -1,4 +1,4 @@
-# Winget Package Manager 🚀
+# Windows Package Manager 🚀
 
 A sleek, user-friendly GUI application built with Python to simplify package management on Windows using Winget. Browse categorized apps, search for packages, select and install multiple apps with ease, save profiles, and more!
 
@@ -24,7 +24,7 @@ A sleek, user-friendly GUI application built with Python to simplify package man
 
 1. Clone the repository:
    ```
-   git clone https://github.com/tboy1337/winget-manager.git
+   git clone https://github.com/tboy1337/Windows-Package-Manager.git
    cd winget-manager
    ```
 
