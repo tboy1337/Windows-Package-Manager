@@ -1,10 +1,42 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, simpledialog
 import json
+import threading
 from typing import Dict, List
 from core.winget_manager import WingetManager
 from core.app_database import AppDatabase
 from core.installer import Installer
+
+class Tooltip:
+    def __init__(self, widget, text):
+        self.widget = widget
+        self.text = text
+        self.tooltip = None
+        self.id = None
+        widget.bind("<Enter>", self.enter)
+        widget.bind("<Leave>", self.leave)
+
+    def enter(self, event=None):
+        self.id = self.widget.after(2000, self.show)
+
+    def leave(self, event=None):
+        if self.id:
+            self.widget.after_cancel(self.id)
+            self.id = None
+        if self.tooltip:
+            self.tooltip.destroy()
+            self.tooltip = None
+
+    def show(self):
+        if not self.text:
+            return
+        x = self.widget.winfo_rootx() + 20
+        y = self.widget.winfo_rooty() + self.widget.winfo_height() + 5
+        self.tooltip = tk.Toplevel(self.widget)
+        self.tooltip.wm_overrideredirect(True)
+        self.tooltip.wm_geometry(f"+{x}+{y}")
+        label = tk.Label(self.tooltip, text=self.text, justify='left', background="#ffffe0", relief='solid', borderwidth=1, padx=5, pady=3, wraplength=300)
+        label.pack()
 
 class MainWindow(tk.Tk):
     def __init__(self) -> None:
@@ -101,6 +133,7 @@ class MainWindow(tk.Tk):
             chk = ttk.Checkbutton(target, text=app['name'], variable=var,
                                   command=lambda a=app['id'], v=var: self.toggle_select(a, v))
             chk.pack(anchor='w')
+            Tooltip(chk, app.get('description', 'No description available'))
             self.checkbuttons[app['id']] = (chk, var)
 
     def toggle_select(self, pkg_id: str, var: tk.BooleanVar) -> None:
@@ -142,6 +175,7 @@ class MainWindow(tk.Tk):
                 chk = ttk.Checkbutton(self.search_results_frame, text=f"{res['name']} ({res['id']})", variable=var,
                                       command=lambda i=res['id'], v=var: self.toggle_select(i, v))
                 chk.pack(anchor='w')
+                Tooltip(chk, 'No description available')
                 self.checkbuttons[res['id']] = (chk, var)  # Note: may overwrite if duplicate id
         self.notebook.tab(self.search_results_frame, state='normal')
         self.notebook.select(self.search_results_frame)
