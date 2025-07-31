@@ -40,3 +40,11 @@ temp/
 *.tmp
 *.bak
 *.swp 
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.htmlcov/
+.pytest_cache/
+coverage.xml
+*.cover" 
