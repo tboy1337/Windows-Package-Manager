@@ -62,7 +62,7 @@ class WingetManager:
 
     @staticmethod
     def install_package(package_id: str, silent: bool = True) -> Dict[str, any]:
-        cmd = ['winget', 'install', '--id', package_id, '--exact', '--disable-interactivity', '--scope', 'machine']
+        cmd = ['winget', 'install', '--id', package_id, '--exact', '--disable-interactivity']
         if silent:
             cmd.extend(['--silent', '--accept-package-agreements', '--accept-source-agreements'])
         result = subprocess.run(cmd, capture_output=True, text=True)
