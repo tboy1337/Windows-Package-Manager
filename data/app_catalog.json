@@ -1,115 +1,752 @@
 [
-  {"name": "Discord", "id": "Discord.Discord", "category": "Communication"},
-  {"name": "Element", "id": "Element.Element", "category": "Communication"},
-  {"name": "Microsoft Teams", "id": "Microsoft.Teams", "category": "Communication"},
-  {"name": "Signal", "id": "Signal.Signal", "category": "Communication"},
-  {"name": "Skype", "id": "Microsoft.Skype", "category": "Communication"},
-  {"name": "Slack", "id": "SlackTechnologies.Slack", "category": "Communication"},
-  {"name": "Telegram", "id": "Telegram.TelegramDesktop", "category": "Communication"},
-  {"name": "Thunderbird", "id": "Mozilla.Thunderbird", "category": "Communication"},
-  {"name": "WhatsApp", "id": "WhatsApp.WhatsApp", "category": "Communication"},
-  {"name": "WhatsApp Business", "id": "WhatsApp.WhatsAppBusiness", "category": "Communication"},
-  {"name": "Zoom", "id": "Zoom.Zoom", "category": "Communication"},
-  {"name": ".NET SDK 8", "id": "Microsoft.DotNet.SDK.8", "category": "Development"},
-  {"name": "Android Studio", "id": "Google.AndroidStudio", "category": "Development"},
-  {"name": "CMake", "id": "Kitware.CMake", "category": "Development"},
-  {"name": "Docker Desktop", "id": "Docker.DockerDesktop", "category": "Development"},
-  {"name": "Eclipse", "id": "EclipseFoundation.Eclipse", "category": "Development"},
-  {"name": "Git", "id": "Git.Git", "category": "Development"},
-  {"name": "GitHub Desktop", "id": "GitHub.GitHubDesktop", "category": "Development"},
-  {"name": "Go", "id": "Golang.Go", "category": "Development"},
-  {"name": "IntelliJ IDEA Community", "id": "JetBrains.IntelliJIDEA.Community", "category": "Development"},
-  {"name": "Java 8", "id": "Oracle.JavaRuntimeEnvironment", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 17", "id": "Oracle.JDK.17", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 18", "id": "Oracle.JDK.18", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 19", "id": "Oracle.JDK.19", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 20", "id": "Oracle.JDK.20", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 21", "id": "Oracle.JDK.21", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 22", "id": "Oracle.JDK.22", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 23", "id": "Oracle.JDK.23", "category": "Development"},
-  {"name": "Java(TM) SE Development Kit 24", "id": "Oracle.JDK.24", "category": "Development"},
-  {"name": "MinGW", "id": "MinGW.MinGW", "category": "Development"},
-  {"name": "MongoDB", "id": "MongoDB.Server", "category": "Development"},
-  {"name": "MySQL", "id": "Oracle.MySQL", "category": "Development"},
-  {"name": "Node.js", "id": "OpenJS.NodeJS", "category": "Development"},
-  {"name": "Oracle VM VirtualBox", "id": "Oracle.VirtualBox", "category": "Development"},
-  {"name": "PHP", "id": "PHP.PHP", "category": "Development"},
-  {"name": "PostgreSQL", "id": "PostgreSQL.PostgreSQL", "category": "Development"},
-  {"name": "Postman", "id": "Postman.Postman", "category": "Development"},
-  {"name": "PyCharm", "id": "JetBrains.PyCharm.Community", "category": "Development"},
-  {"name": "Python 3 (latest)", "id": "Python.Launcher", "category": "Development"},
-  {"name": "Python 3.10", "id": "Python.Python.3.10", "category": "Development"},
-  {"name": "Python 3.11", "id": "Python.Python.3.11", "category": "Development"},
-  {"name": "Python 3.12", "id": "Python.Python.3.12", "category": "Development"},
-  {"name": "Python 3.13", "id": "Python.Python.3.13", "category": "Development"},
-  {"name": "Ruby", "id": "RubyInstallerTeam.Ruby", "category": "Development"},
-  {"name": "Rust", "id": "Rustlang.Rust.MSVC", "category": "Development"},
-  {"name": "Visual Studio", "id": "Microsoft.VisualStudio.2022.Community", "category": "Development"},
-  {"name": "Yarn", "id": "Yarn.Yarn", "category": "Development"},
-  {"name": "Battle.net", "id": "Blizzard.Battle.net", "category": "Gaming"},
-  {"name": "Epic Games Launcher", "id": "EpicGames.EpicGamesLauncher", "category": "Gaming"},
-  {"name": "GOG Galaxy", "id": "GOG.Galaxy", "category": "Gaming"},
-  {"name": "Heroic Games Launcher", "id": "HeroicGamesLauncher.HeroicGamesLauncher", "category": "Gaming"},
-  {"name": "Lutris", "id": "Lutris.Lutris", "category": "Gaming"},
-  {"name": "Minecraft Launcher", "id": "Mojang.MinecraftLauncher", "category": "Gaming"},
-  {"name": "Origin", "id": "ElectronicArts.EAapp", "category": "Gaming"},
-  {"name": "Playnite", "id": "JosefNemec.Playnite", "category": "Gaming"},
-  {"name": "Steam", "id": "Valve.Steam", "category": "Gaming"},
-  {"name": "Ubisoft Connect", "id": "Ubisoft.Connect", "category": "Gaming"},
-  {"name": "itch.io", "id": "itch.io", "category": "Gaming"},
-  {"name": "Audacity", "id": "Audacity.Audacity", "category": "Media"},
-  {"name": "Blender", "id": "BlenderFoundation.Blender", "category": "Media"},
-  {"name": "Foobar2000", "id": "PeterPawlowski.foobar2000", "category": "Media"},
-  {"name": "GIMP", "id": "GIMP.GIMP", "category": "Media"},
-  {"name": "HandBrake", "id": "HandBrake.HandBrake", "category": "Media"},
-  {"name": "Inkscape", "id": "Inkscape.Inkscape", "category": "Media"},
-  {"name": "Kodi", "id": "XBMCFoundation.Kodi", "category": "Media"},
-  {"name": "MPC-HC", "id": "clsid2.mpc-hc", "category": "Media"},
-  {"name": "OBS Studio", "id": "OBSProject.OBSStudio", "category": "Media"},
-  {"name": "Plex", "id": "Plex.Plex", "category": "Media"},
-  {"name": "Spotify", "id": "Spotify.Spotify", "category": "Media"},
-  {"name": "VLC", "id": "VideoLAN.VLC", "category": "Media"},
-  {"name": "iTunes", "id": "Apple.iTunes", "category": "Media"},
-  {"name": "Adobe Acrobat Reader", "id": "Adobe.Acrobat.Reader.64bit", "category": "Productivity"},
-  {"name": "Draw.io (diagrams.net)", "id": "JGraph.Drawio", "category": "Productivity"},
-  {"name": "Evernote", "id": "Evernote.Evernote", "category": "Productivity"},
-  {"name": "LibreOffice", "id": "TheDocumentFoundation.LibreOffice", "category": "Productivity"},
-  {"name": "Microsoft 365", "id": "Microsoft.365", "category": "Productivity"},
-  {"name": "Microsoft Office", "id": "Microsoft.Office", "category": "Productivity"},
-  {"name": "Notepad++", "id": "Notepad++.Notepad++", "category": "Productivity"},
-  {"name": "Obsidian", "id": "Obsidian.Obsidian", "category": "Productivity"},
-  {"name": "OneNote", "id": "Microsoft.OneNote", "category": "Productivity"},
-  {"name": "SumatraPDF", "id": "SumatraPDF.SumatraPDF", "category": "Productivity"},
-  {"name": "Todoist", "id": "Doist.Todoist", "category": "Productivity"},
-  {"name": "Visual Studio Code", "id": "Microsoft.VisualStudioCode", "category": "Productivity"},
-  {"name": "7-Zip", "id": "IgorPavlov.7zip", "category": "Utilities"},
-  {"name": "AutoHotkey", "id": "AutoHotkey.AutoHotkey", "category": "Utilities"},
-  {"name": "Bitwarden", "id": "Bitwarden.Bitwarden", "category": "Utilities"},
-  {"name": "CCleaner", "id": "Piriform.CCleaner", "category": "Utilities"},
-  {"name": "CPU-Z", "id": "CPUID.CPU-Z", "category": "Utilities"},
-  {"name": "CrystalDiskInfo", "id": "CrystalDewWorld.CrystalDiskInfo", "category": "Utilities"},
-  {"name": "CrystalDiskMark", "id": "CrystalDewWorld.CrystalDiskMark", "category": "Utilities"},
-  {"name": "Everything", "id": "voidtools.Everything", "category": "Utilities"},
-  {"name": "FileZilla", "id": "FileZilla.FileZilla", "category": "Utilities"},
-  {"name": "GPU-Z", "id": "TechPowerUp.GPU-Z", "category": "Utilities"},
-  {"name": "HWMonitor", "id": "CPUID.HWMonitor", "category": "Utilities"},
-  {"name": "KeePass", "id": "DominikReichl.KeePass", "category": "Utilities"},
-  {"name": "Malwarebytes", "id": "Malwarebytes.Malwarebytes", "category": "Utilities"},
-  {"name": "PowerToys", "id": "Microsoft.PowerToys", "category": "Utilities"},
-  {"name": "Process Explorer", "id": "Microsoft.Sysinternals.ProcessExplorer", "category": "Utilities"},
-  {"name": "PuTTY", "id": "SimonTatham.PuTTY", "category": "Utilities"},
-  {"name": "Recuva", "id": "Piriform.Recuva", "category": "Utilities"},
-  {"name": "Rufus", "id": "Rufus.Rufus", "category": "Utilities"},
-  {"name": "ShareX", "id": "ShareX.ShareX", "category": "Utilities"},
-  {"name": "Speccy", "id": "Piriform.Speccy", "category": "Utilities"},
-  {"name": "TreeSize Free", "id": "JAMSoftware.TreeSize.Free", "category": "Utilities"},
-  {"name": "WinMerge", "id": "WinMerge.WinMerge", "category": "Utilities"},
-  {"name": "WinRAR", "id": "RARLAB.WinRAR", "category": "Utilities"},
-  {"name": "WinSCP", "id": "WinSCP.WinSCP", "category": "Utilities"},
-  {"name": "Brave", "id": "Brave.Brave", "category": "Web Browsers"},
-  {"name": "Google Chrome", "id": "Google.Chrome", "category": "Web Browsers"},
-  {"name": "Microsoft Edge", "id": "Microsoft.Edge", "category": "Web Browsers"},
-  {"name": "Mozilla Firefox", "id": "Mozilla.Firefox", "category": "Web Browsers"},
-  {"name": "Opera", "id": "Opera.Opera", "category": "Web Browsers"},
-  {"name": "Vivaldi", "id": "Vivaldi.Vivaldi", "category": "Web Browsers"}
-] 
+  {
+    "name": ".NET SDK 8",
+    "id": "Microsoft.DotNet.SDK.8",
+    "category": "Development"
+  },
+  {
+    "name": "7-Zip",
+    "id": "IgorPavlov.7zip",
+    "category": "Utilities"
+  },
+  {
+    "name": "Adobe Acrobat Reader",
+    "id": "Adobe.Acrobat.Reader.64bit",
+    "category": "Productivity"
+  },
+  {
+    "name": "AIMP",
+    "id": "AIMP.AIMP",
+    "category": "Media"
+  },
+  {
+    "name": "Android Studio",
+    "id": "Google.AndroidStudio",
+    "category": "Development"
+  },
+  {
+    "name": "Apache OpenOffice",
+    "id": "Apache.OpenOffice",
+    "category": "Productivity"
+  },
+  {
+    "name": "Audacity",
+    "id": "Audacity.Audacity",
+    "category": "Media"
+  },
+  {
+    "name": "AutoHotkey",
+    "id": "AutoHotkey.AutoHotkey",
+    "category": "Utilities"
+  },
+  {
+    "name": "Battle.net",
+    "id": "Blizzard.Battle.net",
+    "category": "Gaming"
+  },
+  {
+    "name": "Bitwarden",
+    "id": "Bitwarden.Bitwarden",
+    "category": "Utilities"
+  },
+  {
+    "name": "Blender",
+    "id": "BlenderFoundation.Blender",
+    "category": "Media"
+  },
+  {
+    "name": "Brave",
+    "id": "Brave.Brave",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "CCleaner",
+    "id": "Piriform.CCleaner",
+    "category": "Utilities"
+  },
+  {
+    "name": "CMake",
+    "id": "Kitware.CMake",
+    "category": "Development"
+  },
+  {
+    "name": "CPU-Z",
+    "id": "CPUID.CPU-Z",
+    "category": "Utilities"
+  },
+  {
+    "name": "CrystalDiskInfo",
+    "id": "CrystalDewWorld.CrystalDiskInfo",
+    "category": "Utilities"
+  },
+  {
+    "name": "CrystalDiskMark",
+    "id": "CrystalDewWorld.CrystalDiskMark",
+    "category": "Utilities"
+  },
+  {
+    "name": "Cursor",
+    "id": "Anysphere.Cursor",
+    "category": "Development"
+  },
+  {
+    "name": "CutePDF Writer",
+    "id": "AcroSoftware.CutePDFWriter",
+    "category": "Productivity"
+  },
+  {
+    "name": "Discord",
+    "id": "Discord.Discord",
+    "category": "Communication"
+  },
+  {
+    "name": "Docker Desktop",
+    "id": "Docker.DockerDesktop",
+    "category": "Development"
+  },
+  {
+    "name": "Draw.io (diagrams.net)",
+    "id": "JGraph.Drawio",
+    "category": "Productivity"
+  },
+  {
+    "name": "Dropbox",
+    "id": "Dropbox.Dropbox",
+    "category": "Productivity"
+  },
+  {
+    "name": "Eclipse",
+    "id": "EclipseFoundation.Eclipse",
+    "category": "Development"
+  },
+  {
+    "name": "Element",
+    "id": "Element.Element",
+    "category": "Communication"
+  },
+  {
+    "name": "Epic Games Launcher",
+    "id": "EpicGames.EpicGamesLauncher",
+    "category": "Gaming"
+  },
+  {
+    "name": "Evernote",
+    "id": "Evernote.Evernote",
+    "category": "Productivity"
+  },
+  {
+    "name": "Everything",
+    "id": "voidtools.Everything",
+    "category": "Utilities"
+  },
+  {
+    "name": "FastStone Image Viewer",
+    "id": "FastStone.Viewer",
+    "category": "Media"
+  },
+  {
+    "name": "FileZilla",
+    "id": "FileZilla.FileZilla",
+    "category": "Utilities"
+  },
+  {
+    "name": "Foobar2000",
+    "id": "PeterPawlowski.foobar2000",
+    "category": "Media"
+  },
+  {
+    "name": "Foxit PDF Reader",
+    "id": "Foxit.PDFReader",
+    "category": "Productivity"
+  },
+  {
+    "name": "GIMP",
+    "id": "GIMP.GIMP",
+    "category": "Media"
+  },
+  {
+    "name": "Git",
+    "id": "Git.Git",
+    "category": "Development"
+  },
+  {
+    "name": "GitHub Desktop",
+    "id": "GitHub.GitHubDesktop",
+    "category": "Development"
+  },
+  {
+    "name": "Glary Utilities",
+    "id": "Glarysoft.GlaryUtilities",
+    "category": "Utilities"
+  },
+  {
+    "name": "Go",
+    "id": "Golang.Go",
+    "category": "Development"
+  },
+  {
+    "name": "GOG Galaxy",
+    "id": "GOG.Galaxy",
+    "category": "Gaming"
+  },
+  {
+    "name": "GOM",
+    "id": "GOMLab.GOMPlayer",
+    "category": "Media"
+  },
+  {
+    "name": "Google Chrome",
+    "id": "Google.Chrome",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "Google Drive",
+    "id": "Google.Drive",
+    "category": "Productivity"
+  },
+  {
+    "name": "Google Earth Pro",
+    "id": "Google.EarthPro",
+    "category": "Utilities"
+  },
+  {
+    "name": "GPU-Z",
+    "id": "TechPowerUp.GPU-Z",
+    "category": "Utilities"
+  },
+  {
+    "name": "Greenshot",
+    "id": "Greenshot.Greenshot",
+    "category": "Media"
+  },
+  {
+    "name": "HandBrake",
+    "id": "HandBrake.HandBrake",
+    "category": "Media"
+  },
+  {
+    "name": "Heroic Games Launcher",
+    "id": "HeroicGamesLauncher.HeroicGamesLauncher",
+    "category": "Gaming"
+  },
+  {
+    "name": "HWMonitor",
+    "id": "CPUID.HWMonitor",
+    "category": "Utilities"
+  },
+  {
+    "name": "ImgBurn",
+    "id": "LIGHTNINGUK.ImgBurn",
+    "category": "Utilities"
+  },
+  {
+    "name": "InfraRecorder",
+    "id": "ChristianKindahl.InfraRecorder",
+    "category": "Utilities"
+  },
+  {
+    "name": "Inkscape",
+    "id": "Inkscape.Inkscape",
+    "category": "Media"
+  },
+  {
+    "name": "IntelliJ IDEA Community",
+    "id": "JetBrains.IntelliJIDEA.Community",
+    "category": "Development"
+  },
+  {
+    "name": "IrfanView",
+    "id": "IrfanSkiljan.IrfanView",
+    "category": "Media"
+  },
+  {
+    "name": "itch.io",
+    "id": "itch.io",
+    "category": "Gaming"
+  },
+  {
+    "name": "iTunes",
+    "id": "Apple.iTunes",
+    "category": "Media"
+  },
+  {
+    "name": "Java 8",
+    "id": "Oracle.JavaRuntimeEnvironment",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 17",
+    "id": "Oracle.JDK.17",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 18",
+    "id": "Oracle.JDK.18",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 19",
+    "id": "Oracle.JDK.19",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 20",
+    "id": "Oracle.JDK.20",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 21",
+    "id": "Oracle.JDK.21",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 22",
+    "id": "Oracle.JDK.22",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 23",
+    "id": "Oracle.JDK.23",
+    "category": "Development"
+  },
+  {
+    "name": "Java(TM) SE Development Kit 24",
+    "id": "Oracle.JDK.24",
+    "category": "Development"
+  },
+  {
+    "name": "K-Lite Codecs",
+    "id": "CodecGuide.K-LiteCodecPack.Standard",
+    "category": "Media"
+  },
+  {
+    "name": "KeePass",
+    "id": "DominikReichl.KeePass",
+    "category": "Utilities"
+  },
+  {
+    "name": "Kodi",
+    "id": "XBMCFoundation.Kodi",
+    "category": "Media"
+  },
+  {
+    "name": "Krita",
+    "id": "KDE.Krita",
+    "category": "Media"
+  },
+  {
+    "name": "Launchy",
+    "id": "CodeJelly.Launchy",
+    "category": "Utilities"
+  },
+  {
+    "name": "LibreOffice",
+    "id": "TheDocumentFoundation.LibreOffice",
+    "category": "Productivity"
+  },
+  {
+    "name": "Lutris",
+    "id": "Lutris.Lutris",
+    "category": "Gaming"
+  },
+  {
+    "name": "Malwarebytes",
+    "id": "Malwarebytes.Malwarebytes",
+    "category": "Security"
+  },
+  {
+    "name": "MediaMonkey",
+    "id": "VentisMedia.MediaMonkey",
+    "category": "Media"
+  },
+  {
+    "name": "Microsoft 365",
+    "id": "Microsoft.365",
+    "category": "Productivity"
+  },
+  {
+    "name": "Microsoft Edge",
+    "id": "Microsoft.Edge",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "Microsoft Office",
+    "id": "Microsoft.Office",
+    "category": "Productivity"
+  },
+  {
+    "name": "Microsoft Teams",
+    "id": "Microsoft.Teams",
+    "category": "Communication"
+  },
+  {
+    "name": "Minecraft Launcher",
+    "id": "Mojang.MinecraftLauncher",
+    "category": "Gaming"
+  },
+  {
+    "name": "MinGW",
+    "id": "MinGW.MinGW",
+    "category": "Development"
+  },
+  {
+    "name": "MongoDB",
+    "id": "MongoDB.Server",
+    "category": "Development"
+  },
+  {
+    "name": "Mozilla Firefox",
+    "id": "Mozilla.Firefox",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "MPC-HC",
+    "id": "clsid2.mpc-hc",
+    "category": "Media"
+  },
+  {
+    "name": "MusicBee",
+    "id": "MusicBee.MusicBee",
+    "category": "Media"
+  },
+  {
+    "name": "MySQL",
+    "id": "Oracle.MySQL",
+    "category": "Development"
+  },
+  {
+    "name": "Node.js",
+    "id": "OpenJS.NodeJS",
+    "category": "Development"
+  },
+  {
+    "name": "Notepad++",
+    "id": "Notepad++.Notepad++",
+    "category": "Productivity"
+  },
+  {
+    "name": "OBS Studio",
+    "id": "OBSProject.OBSStudio",
+    "category": "Media"
+  },
+  {
+    "name": "Obsidian",
+    "id": "Obsidian.Obsidian",
+    "category": "Productivity"
+  },
+  {
+    "name": "OneDrive",
+    "id": "Microsoft.OneDrive",
+    "category": "Productivity"
+  },
+  {
+    "name": "OneNote",
+    "id": "Microsoft.OneNote",
+    "category": "Productivity"
+  },
+  {
+    "name": "Open-Shell",
+    "id": "Open-Shell.Open-Shell-Menu",
+    "category": "Utilities"
+  },
+  {
+    "name": "Opera",
+    "id": "Opera.Opera",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "Oracle VM VirtualBox",
+    "id": "Oracle.VirtualBox",
+    "category": "Development"
+  },
+  {
+    "name": "Origin",
+    "id": "ElectronicArts.EAapp",
+    "category": "Gaming"
+  },
+  {
+    "name": "Paint.NET",
+    "id": "dotPDN.paint.net",
+    "category": "Media"
+  },
+  {
+    "name": "PHP",
+    "id": "PHP.PHP",
+    "category": "Development"
+  },
+  {
+    "name": "Pidgin",
+    "id": "Pidgin.Pidgin",
+    "category": "Communication"
+  },
+  {
+    "name": "Playnite",
+    "id": "JosefNemec.Playnite",
+    "category": "Gaming"
+  },
+  {
+    "name": "Plex",
+    "id": "Plex.Plex",
+    "category": "Media"
+  },
+  {
+    "name": "PostgreSQL",
+    "id": "PostgreSQL.PostgreSQL",
+    "category": "Development"
+  },
+  {
+    "name": "Postman",
+    "id": "Postman.Postman",
+    "category": "Development"
+  },
+  {
+    "name": "PowerToys",
+    "id": "Microsoft.PowerToys",
+    "category": "Utilities"
+  },
+  {
+    "name": "Process Explorer",
+    "id": "Microsoft.Sysinternals.ProcessExplorer",
+    "category": "Utilities"
+  },
+  {
+    "name": "PuTTY",
+    "id": "SimonTatham.PuTTY",
+    "category": "Utilities"
+  },
+  {
+    "name": "PyCharm",
+    "id": "JetBrains.PyCharm.Community",
+    "category": "Development"
+  },
+  {
+    "name": "Python 3 (latest)",
+    "id": "Python.Launcher",
+    "category": "Development"
+  },
+  {
+    "name": "Python 3.10",
+    "id": "Python.Python.3.10",
+    "category": "Development"
+  },
+  {
+    "name": "Python 3.11",
+    "id": "Python.Python.3.11",
+    "category": "Development"
+  },
+  {
+    "name": "Python 3.12",
+    "id": "Python.Python.3.12",
+    "category": "Development"
+  },
+  {
+    "name": "Python 3.13",
+    "id": "Python.Python.3.13",
+    "category": "Development"
+  },
+  {
+    "name": "qBittorrent",
+    "id": "qBittorrent.qBittorrent",
+    "category": "Utilities"
+  },
+  {
+    "name": "RealVNC Server",
+    "id": "RealVNC.VNCServer",
+    "category": "Utilities"
+  },
+  {
+    "name": "RealVNC Viewer",
+    "id": "RealVNC.VNCViewer",
+    "category": "Utilities"
+  },
+  {
+    "name": "Recuva",
+    "id": "Piriform.Recuva",
+    "category": "Utilities"
+  },
+  {
+    "name": "Revo Uninstaller",
+    "id": "RevoUninstaller.RevoUninstaller",
+    "category": "Utilities"
+  },
+  {
+    "name": "Ruby",
+    "id": "RubyInstallerTeam.Ruby",
+    "category": "Development"
+  },
+  {
+    "name": "Rufus",
+    "id": "Rufus.Rufus",
+    "category": "Utilities"
+  },
+  {
+    "name": "Rust",
+    "id": "Rustlang.Rust.MSVC",
+    "category": "Development"
+  },
+  {
+    "name": "ShareX",
+    "id": "ShareX.ShareX",
+    "category": "Utilities"
+  },
+  {
+    "name": "Signal",
+    "id": "Signal.Signal",
+    "category": "Communication"
+  },
+  {
+    "name": "Skype",
+    "id": "Microsoft.Skype",
+    "category": "Communication"
+  },
+  {
+    "name": "Slack",
+    "id": "SlackTechnologies.Slack",
+    "category": "Communication"
+  },
+  {
+    "name": "Speccy",
+    "id": "Piriform.Speccy",
+    "category": "Utilities"
+  },
+  {
+    "name": "Spotify",
+    "id": "Spotify.Spotify",
+    "category": "Media"
+  },
+  {
+    "name": "Steam",
+    "id": "Valve.Steam",
+    "category": "Gaming"
+  },
+  {
+    "name": "SugarSync",
+    "id": "IPVanish.SugarSync",
+    "category": "Productivity"
+  },
+  {
+    "name": "SumatraPDF",
+    "id": "SumatraPDF.SumatraPDF",
+    "category": "Productivity"
+  },
+  {
+    "name": "SUPERAntiSpyware",
+    "id": "SUPERAntiSpyware.SUPERAntiSpyware",
+    "category": "Security"
+  },
+  {
+    "name": "TeamViewer",
+    "id": "TeamViewer.TeamViewer",
+    "category": "Utilities"
+  },
+  {
+    "name": "Telegram",
+    "id": "Telegram.TelegramDesktop",
+    "category": "Communication"
+  },
+  {
+    "name": "TeraCopy",
+    "id": "CodeSector.TeraCopy",
+    "category": "Utilities"
+  },
+  {
+    "name": "Thunderbird",
+    "id": "Mozilla.Thunderbird",
+    "category": "Communication"
+  },
+  {
+    "name": "Todoist",
+    "id": "Doist.Todoist",
+    "category": "Productivity"
+  },
+  {
+    "name": "TreeSize Free",
+    "id": "JAMSoftware.TreeSize.Free",
+    "category": "Utilities"
+  },
+  {
+    "name": "Trillian",
+    "id": "CeruleanStudios.Trillian",
+    "category": "Communication"
+  },
+  {
+    "name": "Ubisoft Connect",
+    "id": "Ubisoft.Connect",
+    "category": "Gaming"
+  },
+  {
+    "name": "Visual Studio",
+    "id": "Microsoft.VisualStudio.2022.Community",
+    "category": "Development"
+  },
+  {
+    "name": "Visual Studio Code",
+    "id": "Microsoft.VisualStudioCode",
+    "category": "Productivity"
+  },
+  {
+    "name": "Vivaldi",
+    "id": "Vivaldi.Vivaldi",
+    "category": "Web Browsers"
+  },
+  {
+    "name": "VLC",
+    "id": "VideoLAN.VLC",
+    "category": "Media"
+  },
+  {
+    "name": "WhatsApp",
+    "id": "WhatsApp.WhatsApp",
+    "category": "Communication"
+  },
+  {
+    "name": "WhatsApp Business",
+    "id": "WhatsApp.WhatsAppBusiness",
+    "category": "Communication"
+  },
+  {
+    "name": "Winamp",
+    "id": "Winamp.Winamp",
+    "category": "Media"
+  },
+  {
+    "name": "WinDirStat",
+    "id": "WinDirStat.WinDirStat",
+    "category": "Utilities"
+  },
+  {
+    "name": "WinMerge",
+    "id": "WinMerge.WinMerge",
+    "category": "Utilities"
+  },
+  {
+    "name": "WinRAR",
+    "id": "RARLAB.WinRAR",
+    "category": "Utilities"
+  },
+  {
+    "name": "WinSCP",
+    "id": "WinSCP.WinSCP",
+    "category": "Utilities"
+  },
+  {
+    "name": "WizTree",
+    "id": "AntibodySoftware.WizTree",
+    "category": "Utilities"
+  },
+  {
+    "name": "XnView",
+    "id": "XnSoft.XnView.Classic",
+    "category": "Media"
+  },
+  {
+    "name": "Yarn",
+    "id": "Yarn.Yarn",
+    "category": "Development"
+  },
+  {
+    "name": "Zoom",
+    "id": "Zoom.Zoom",
+    "category": "Communication"
+  }
+]
