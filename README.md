@@ -17,8 +17,6 @@ A sleek, user-friendly GUI application built with Python to simplify package man
 
 - Windows 10 or later (with Winget installed)
 - Python 3.6+
-- Tkinter (included with Python standard library)
-- SQLite (included with Python standard library)
 
 No additional packages required! All dependencies are standard Python libraries.
 
