@@ -138,9 +138,6 @@ class MainWindow(tk.Tk):
         if not WingetManager.is_available():
             messagebox.showerror("Error", "Winget is not available. Please install it.")
             return
-        if not WingetManager.is_admin():
-            messagebox.showwarning("Warning", "Please run the application as administrator for installations.")
-            return
         def callback(pkg: str, result: Dict[str, any]) -> None:
             status = 'Success' if result['success'] else result.get('error', 'Failed')
             self.log_text.insert('end', f"{pkg}: {status}\n")

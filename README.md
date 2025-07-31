@@ -31,7 +31,7 @@ A sleek, user-friendly GUI application built with Python to simplify package man
    python main.py
    ```
 
-**Note**: For installations to work, run the app as Administrator. Winget must be available on your system.
+**Note**: The app will automatically prompt for administrator privileges via UAC if not already elevated. This ensures smooth, system-wide installations visible to all users. Winget must be available on your system.
 
 ## 🚀 Usage
 

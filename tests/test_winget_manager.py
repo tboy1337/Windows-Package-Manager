@@ -76,27 +76,21 @@ Firefox                            Mozilla.Firefox              128.0.3         
         self.assertEqual(result, [])
 
     @patch('subprocess.run')
-    @patch.object(WingetManager, 'is_admin', return_value=True)
-    def test_install_package_success(self, mock_admin, mock_run):
+    def test_install_package_success(self, mock_run):
         mock_run.return_value = MagicMock(returncode=0, stdout="Installed", stderr="")
         result = WingetManager.install_package('App.ID')
+        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--scope', 'machine', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True)
         self.assertTrue(result['success'])
         self.assertEqual(result['stdout'], "Installed")
         self.assertEqual(result['stderr'], "")
 
     @patch('subprocess.run')
-    @patch.object(WingetManager, 'is_admin', return_value=True)
-    def test_install_package_failure(self, mock_admin, mock_run):
+    def test_install_package_failure(self, mock_run):
         mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="Error")
         result = WingetManager.install_package('App.ID')
+        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--scope', 'machine', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True)
         self.assertFalse(result['success'])
         self.assertEqual(result['stderr'], "Error")
-
-    @patch.object(WingetManager, 'is_admin', return_value=False)
-    def test_install_package_no_admin(self, mock_admin):
-        result = WingetManager.install_package('App.ID')
-        self.assertFalse(result['success'])
-        self.assertEqual(result['error'], "Administrator privileges required")
 
 if __name__ == '__main__':
     unittest.main()

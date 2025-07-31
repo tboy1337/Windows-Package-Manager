@@ -104,9 +104,8 @@ class TestMainWindow(unittest.TestCase):
         self.assertIn("TestApp", children[0].cget("text"))
 
     @patch.object(WingetManager, 'is_available', return_value=True)
-    @patch.object(WingetManager, 'is_admin', return_value=True)
     @patch.object(Installer, 'install_packages')
-    def test_install_selected_success(self, mock_install, mock_admin, mock_avail):
+    def test_install_selected_success(self, mock_install, mock_avail):
         self.app.selected_packages = {'Test.ID'}
         self.app.install_selected()
         mock_install.assert_called_once()
@@ -123,14 +122,6 @@ class TestMainWindow(unittest.TestCase):
             with patch('gui.main_window.messagebox.showerror') as mock_err:
                 self.app.install_selected()
                 mock_err.assert_called_once_with("Error", "Winget is not available. Please install it.")
-
-    def test_install_selected_no_admin(self):
-        self.app.selected_packages = {'Test.ID'}
-        with patch.object(WingetManager, 'is_available', return_value=True):
-            with patch.object(WingetManager, 'is_admin', return_value=False):
-                with patch('gui.main_window.messagebox.showwarning') as mock_warn:
-                    self.app.install_selected()
-                    mock_warn.assert_called_once_with("Warning", "Please run the application as administrator for installations.")
 
     @patch.object(AppDatabase, 'save_profile')
     def test_save_profile(self, mock_save):
@@ -184,8 +175,7 @@ class TestMainWindow(unittest.TestCase):
 
 import time
 @patch.object(WingetManager, 'is_available', return_value=True)
-@patch.object(WingetManager, 'is_admin', return_value=True)
-@patch.object(WingetManager, 'install_package', return_value={'success': True})
+@patch.object(Installer, 'install_packages')
 def test_install_selected_callback(self, mock_install_pkg, mock_admin, mock_avail):
     self.app.selected_packages = {'Test.ID'}
     orig_install = self.app.installer.install_packages

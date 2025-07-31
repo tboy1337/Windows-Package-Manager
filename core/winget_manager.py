@@ -62,9 +62,7 @@ class WingetManager:
 
     @staticmethod
     def install_package(package_id: str, silent: bool = True) -> Dict[str, any]:
-        if not WingetManager.is_admin():
-            return {"success": False, "error": "Administrator privileges required"}
-        cmd = ['winget', 'install', '--id', package_id, '--exact', '--disable-interactivity']
+        cmd = ['winget', 'install', '--id', package_id, '--exact', '--disable-interactivity', '--scope', 'machine']
         if silent:
             cmd.extend(['--silent', '--accept-package-agreements', '--accept-source-agreements'])
         result = subprocess.run(cmd, capture_output=True, text=True)
