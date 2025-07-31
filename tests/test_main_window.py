@@ -151,13 +151,13 @@ class TestMainWindow(unittest.TestCase):
             self.app.export_script()
             mock_info.assert_called_once_with("Info", "No packages selected to export")
 
-    @patch('gui.main_window.filedialog.asksaveasfilename', return_value="test.ps1")
+    @patch('gui.main_window.filedialog.asksaveasfilename', return_value="test.cmd")
     def test_export_script_success(self, mock_file):
         self.app.selected_packages = {'Test.ID'}
         with patch('builtins.open') as mock_open:
             with patch('gui.main_window.messagebox.showinfo') as mock_info:
                 self.app.export_script()
-                mock_open.assert_called_once_with("test.ps1", 'w')
+                mock_open.assert_called_once_with("test.cmd", 'w')
                 mock_info.assert_called_once_with("Info", "Script exported successfully")
 
     def test_perform_search_clear_previous(self):

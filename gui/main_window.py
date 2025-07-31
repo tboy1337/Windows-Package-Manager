@@ -183,10 +183,10 @@ class MainWindow(tk.Tk):
         if not self.selected_packages:
             messagebox.showinfo("Info", "No packages selected to export")
             return
-        script = "# Winget install script\n"
+        script = "REM Winget install script\n"
         for pkg in self.selected_packages:
             script += f"winget install --id {pkg} --exact --silent --accept-package-agreements --accept-source-agreements\n"
-        file_path = filedialog.asksaveasfilename(defaultextension=".ps1", filetypes=[("PowerShell Script", "*.ps1")])
+        file_path = filedialog.asksaveasfilename(defaultextension=".cmd", filetypes=[("Batch Script", "*.cmd")])
         if file_path:
             with open(file_path, 'w') as f:
                 f.write(script)
