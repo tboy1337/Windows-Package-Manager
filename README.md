@@ -18,8 +18,6 @@ A sleek, user-friendly GUI application built with Python to simplify package man
 - Windows 10 or later (with Winget installed)
 - Python 3.6+
 
-No additional packages required! All dependencies are standard Python libraries.
-
 ## 🛠 Installation
 
 1. Clone the repository:
