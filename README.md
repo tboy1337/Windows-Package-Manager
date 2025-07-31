@@ -1,6 +1,6 @@
 # Winget Package Manager 🚀
 
-A sleek, user-friendly GUI application built with Python and Tkinter to simplify package management on Windows using Winget. Browse categorized apps, search for packages, select and install multiple apps with ease, save profiles, and more!
+A sleek, user-friendly GUI application built with Python to simplify package management on Windows using Winget. Browse categorized apps, search for packages, select and install multiple apps with ease, save profiles, and more!
 
 ## 🌟 Features
 
