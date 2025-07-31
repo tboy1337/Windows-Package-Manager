@@ -25,7 +25,7 @@ A sleek, user-friendly GUI application built with Python to simplify package man
 1. Clone the repository:
    ```
    git clone https://github.com/tboy1337/Windows-Package-Manager.git
-   cd winget-manager
+   cd Windows-Package-Manager
    ```
 
 2. Run the application:
