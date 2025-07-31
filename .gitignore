@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pipenv & Poetry
+Pipfile.lock
+poetry.lock
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Databases
+data/app.db
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea/
+.vscode/
+
+# Misc
+temp/
+*.tmp
+*.bak
+*.swp 
