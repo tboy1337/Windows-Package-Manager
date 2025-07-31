@@ -49,9 +49,18 @@ class MainWindow(tk.Tk):
         self.notebook.pack(fill='both', expand=True)
         self.category_frames = {}
         for cat in self.categories:
-            frame = ttk.Frame(self.notebook)
-            self.category_frames[cat] = frame
-            self.notebook.add(frame, text=cat)
+            outer_frame = ttk.Frame(self.notebook)
+            scroll_canvas = tk.Canvas(outer_frame)
+            scrollbar = ttk.Scrollbar(outer_frame, orient="vertical", command=scroll_canvas.yview)
+            scroll_canvas.configure(yscrollcommand=scrollbar.set)
+            scrollbar.pack(side="right", fill="y")
+            scroll_canvas.pack(side="left", fill="both", expand=True)
+            inner_frame = ttk.Frame(scroll_canvas)
+            scroll_canvas.create_window((0, 0), window=inner_frame, anchor="nw")
+            inner_frame.bind("<Configure>", lambda e, c=scroll_canvas: c.configure(scrollregion=c.bbox("all")))
+            scroll_canvas.bind("<MouseWheel>", lambda event, c=scroll_canvas: c.yview_scroll(int(-1 * (event.delta / 120)), "units"))
+            self.category_frames[cat] = inner_frame
+            self.notebook.add(outer_frame, text=cat)
             self.populate_category(cat)
 
         # Search results frame (hidden initially)
@@ -79,11 +88,17 @@ class MainWindow(tk.Tk):
         self.log_text.pack(fill='both', expand=True)
 
     def populate_category(self, cat: str) -> None:
-        frame = self.category_frames[cat]
+        inner_frame = self.category_frames[cat]
         cat_apps = [app for app in self.apps if app['category'] == cat]
-        for app in cat_apps:
+        left_frame = ttk.Frame(inner_frame)
+        right_frame = ttk.Frame(inner_frame)
+        left_frame.pack(side="left", fill="y", padx=10, pady=5)
+        right_frame.pack(side="right", fill="y", padx=10, pady=5)
+        half = len(cat_apps) // 2
+        for i, app in enumerate(cat_apps):
+            target = left_frame if i < half else right_frame
             var = tk.BooleanVar()
-            chk = ttk.Checkbutton(frame, text=app['name'], variable=var,
+            chk = ttk.Checkbutton(target, text=app['name'], variable=var,
                                   command=lambda a=app['id'], v=var: self.toggle_select(a, v))
             chk.pack(anchor='w')
             self.checkbuttons[app['id']] = (chk, var)
