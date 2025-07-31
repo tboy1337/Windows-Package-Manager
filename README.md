@@ -13,6 +13,8 @@ A sleek, user-friendly GUI application built with Python to simplify package man
 - **Admin Checks & Silent Installs**: Ensures smooth installations with necessary privileges.
 - **Robust Testing**: Comprehensive unit tests with high coverage for reliability.
 
+- **Extensive Package Support**: Supports 100+ curated packages across various categories.
+
 ## 📋 Requirements
 
 - Windows 10 or later (with Winget installed)
