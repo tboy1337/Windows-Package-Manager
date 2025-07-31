@@ -36,13 +36,27 @@ class TestWingetManager(unittest.TestCase):
         self.assertEqual(WingetManager.parse_search_output(output), [])
 
     def test_parse_search_output_with_data(self):
-        output = """Name                               Id                           Version            Source\n----                               --                           -------            ------\nGoogle Chrome                      Google.Chrome                127.0.6533.73      winget\nFirefox                            Mozilla.Firefox              128.0.3            winget"""
+        output = """Name                               Id                           Version            Source
+----                               --                           -------            ------
+Google Chrome                      Google.Chrome                127.0.6533.73      winget
+Firefox                            Mozilla.Firefox              128.0.3            winget"""
         parsed = WingetManager.parse_search_output(output)
         self.assertEqual(len(parsed), 2)
         self.assertEqual(parsed[0]['name'], 'Google Chrome')
         self.assertEqual(parsed[0]['id'], 'Google.Chrome')
         self.assertEqual(parsed[0]['version'], '127.0.6533.73')
         self.assertEqual(parsed[0]['source'], 'winget')
+
+    def test_parse_search_output_with_empty_line(self):
+        output = """Name                               Id                           Version            Source
+----                               --                           -------            ------
+Google Chrome                      Google.Chrome                127.0.6533.73      winget
+
+Firefox                            Mozilla.Firefox              128.0.3            winget"""
+        parsed = WingetManager.parse_search_output(output)
+        self.assertEqual(len(parsed), 2)
+        self.assertEqual(parsed[0]['name'], 'Google Chrome')
+        self.assertEqual(parsed[1]['name'], 'Firefox')
 
     @patch('subprocess.run')
     def test_search_packages_success(self, mock_run):
