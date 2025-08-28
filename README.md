@@ -42,26 +42,6 @@ A modern, user-friendly GUI application for managing Windows packages using the 
    python main.py
    ```
 
-### Development Setup
-
-1. Clone and install development dependencies:
-   ```bash
-   git clone https://github.com/tboy1337/Windows-Package-Manager.git
-   cd Windows-Package-Manager
-   pip install -e .[dev]
-   ```
-
-2. Run tests:
-   ```bash
-   pytest tests/ -v --cov=core --cov=gui
-   ```
-
-3. Run linting:
-   ```bash
-   pylint core gui main.py
-   black core gui main.py
-   ```
-
 ## Usage
 
 1. **Launch the application** - Run `main.py` or use the installed entry point
@@ -71,34 +51,6 @@ A modern, user-friendly GUI application for managing Windows packages using the 
 5. **Install packages** - Click "Install Selected" to begin installation
 6. **Save profiles** - Save your selections as profiles for future use
 7. **Export scripts** - Generate batch scripts for automated deployment
-
-## Project Structure
-
-```
-Windows-Package-Manager/
-├── core/                   # Core application modules
-│   ├── app_database.py    # Database operations for profiles
-│   ├── config.py          # Configuration management
-│   ├── exceptions.py      # Custom exceptions
-│   ├── installer.py       # Package installation logic
-│   ├── logger.py          # Logging configuration
-│   └── winget_manager.py  # Winget interface
-├── gui/                   # GUI components
-│   └── main_window.py     # Main application window
-├── tests/                 # Test suite
-│   ├── test_app_database.py
-│   ├── test_installer.py
-│   ├── test_main_window.py
-│   └── test_winget_manager.py
-├── data/                  # Application data
-│   ├── app_catalog.json  # Package catalog
-│   ├── categories.json   # Category definitions
-│   └── app.db           # SQLite database
-├── logs/                  # Application logs
-├── main.py               # Application entry point
-├── requirements.txt      # Python dependencies
-└── setup.py             # Installation configuration
-```
 
 ## Configuration
 
@@ -116,21 +68,6 @@ Logs are automatically created in the `logs/` directory with:
 - Debug level logging to files
 - Warning+ level logging to console
 - Automatic log rotation
-
-## Testing
-
-The project maintains 100% test coverage:
-
-```bash
-# Run all tests
-pytest tests/ -v
-
-# Run with coverage report
-pytest tests/ -v --cov=core --cov=gui --cov-report=html
-
-# Run specific test file
-pytest tests/test_winget_manager.py -v
-```
 
 ## Contributing
 
@@ -177,14 +114,3 @@ MIT License - see LICENSE.txt for details
 - Review the configuration in `config.json`
 - Ensure winget is working: `winget --version` in Command Prompt
 - Verify administrator privileges if needed
-
-## Changelog
-
-### Version 1.0.0
-- Initial release
-- Full GUI implementation
-- Package search and installation
-- Profile management
-- Export functionality
-- Comprehensive testing
-- Production-ready logging and error handling

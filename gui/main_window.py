@@ -186,13 +186,45 @@ class MainWindow(tk.Tk):
 
     def create_ui(self) -> None:
         """Create and layout the user interface components."""
-        # Search frame
+        # Search frame with clear labeling
         search_frame = ttk.Frame(self)
-        search_frame.pack(fill="x", pady=5)
+        search_frame.pack(fill="x", pady=5, padx=10)
+        
+        # Search label and info
+        search_label_frame = ttk.Frame(search_frame)
+        search_label_frame.pack(fill="x", pady=(0, 2))
+        
+        search_label = ttk.Label(search_label_frame, text="🔍 Search Entire Winget Repository", 
+                                font=("TkDefaultFont", 9, "bold"))
+        search_label.pack(side="left")
+        
+        search_info = ttk.Label(search_label_frame, text="(Searches ALL packages in winget, not just categories below)", 
+                               font=("TkDefaultFont", 8), foreground="gray50")
+        search_info.pack(side="left", padx=(10, 0))
+        
+        # Search entry
         self.search_var = tk.StringVar()
-        search_entry = ttk.Entry(search_frame, textvariable=self.search_var)
-        search_entry.pack(fill="x", expand=True)
+        search_entry = ttk.Entry(search_frame, textvariable=self.search_var, 
+                                font=("TkDefaultFont", 10))
+        search_entry.pack(fill="x", expand=True, pady=(0, 2))
         search_entry.bind("<KeyRelease>", self.perform_search)
+        
+        # Add placeholder text effect
+        search_entry.insert(0, "Type to search thousands of packages...")
+        search_entry.config(foreground="gray50")
+        
+        def on_focus_in(event):
+            if search_entry.get() == "Type to search thousands of packages...":
+                search_entry.delete(0, "end")
+                search_entry.config(foreground="black")
+        
+        def on_focus_out(event):
+            if not search_entry.get():
+                search_entry.insert(0, "Type to search thousands of packages...")
+                search_entry.config(foreground="gray50")
+        
+        search_entry.bind("<FocusIn>", on_focus_in)
+        search_entry.bind("<FocusOut>", on_focus_out)
 
         # Notebook for categories
         self.notebook = ttk.Notebook(self)
@@ -226,7 +258,7 @@ class MainWindow(tk.Tk):
         # Search results frame (hidden initially)
         self.search_results_frame = ttk.Frame(self.notebook)
         self.notebook.add(
-            self.search_results_frame, text="Search Results", state="hidden"
+            self.search_results_frame, text="🔍 Winget Search Results", state="hidden"
         )
 
         # Buttons
@@ -324,7 +356,8 @@ class MainWindow(tk.Tk):
             _event: Key release event (unused)
         """
         query = self.search_var.get().strip()
-        if not query:
+        # Don't search if empty or still showing placeholder text
+        if not query or query == "Type to search thousands of packages...":
             self.notebook.tab(self.search_results_frame, state="hidden")
             return
         results = WingetManager.search_packages(query)
@@ -332,8 +365,21 @@ class MainWindow(tk.Tk):
         for widget in self.search_results_frame.winfo_children():
             widget.destroy()
         if not results:
-            ttk.Label(self.search_results_frame, text="No results found").pack()
+            no_results_label = ttk.Label(self.search_results_frame, 
+                                        text=f"No packages found in winget repository for '{query}'",
+                                        font=("TkDefaultFont", 10))
+            no_results_label.pack(pady=20)
+            help_label = ttk.Label(self.search_results_frame, 
+                                  text="Try different search terms or check the category tabs for curated apps",
+                                  font=("TkDefaultFont", 8), foreground="gray50")
+            help_label.pack()
         else:
+            # Add header for search results
+            header_label = ttk.Label(self.search_results_frame, 
+                                   text=f"Found {len(results)} packages in winget repository for '{query}':",
+                                   font=("TkDefaultFont", 10, "bold"))
+            header_label.pack(anchor="w", pady=(10, 5), padx=10)
+            
             for res in results:
                 var = tk.BooleanVar()
                 chk = ttk.Checkbutton(
@@ -342,7 +388,7 @@ class MainWindow(tk.Tk):
                     variable=var,
                     command=lambda i=res["id"], v=var: self.toggle_select(i, v),
                 )
-                chk.pack(anchor="w")
+                chk.pack(anchor="w", padx=10)
                 Tooltip(chk, "No description available")
                 # Note: may overwrite if duplicate id
                 self.checkbuttons[res["id"]] = (chk, var)
