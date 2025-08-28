@@ -24,8 +24,6 @@ A modern, user-friendly GUI application for managing Windows packages using the 
 
 ## Installation
 
-### From Source
-
 1. Clone the repository:
    ```bash
    git clone https://github.com/tboy1337/Windows-Package-Manager.git
