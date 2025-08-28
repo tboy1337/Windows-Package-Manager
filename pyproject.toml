@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "winget-package-manager"
 version = "1.0.0"
 authors = [
-    {name = "tboy1337", email = "tboy1337@example.com"}
+    {name = "tboy1337", email = "30571311+tboy1337@users.noreply.github.com"}
 ]
 description = "A GUI-based Windows Package Manager using winget"
 readme = "README.md"
@@ -31,7 +31,7 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/tboy1337/Windows-Package-Manager"
+Homepage = "https://tboy1337.github.io"
 Repository = "https://github.com/tboy1337/Windows-Package-Manager"
 
 [project.scripts]
