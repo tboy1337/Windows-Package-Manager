@@ -1,9 +1,0 @@
-pytest
-pytest-cov
-pytest-asyncio
-pytest-timeout
-pytest-xdist
-pytest-mock
-black
-isort
-pylint

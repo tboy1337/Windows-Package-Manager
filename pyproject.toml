@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "winget-package-manager"
+version = "1.0.0"
+authors = [
+    {name = "tboy1337", email = "tboy1337@example.com"}
+]
+description = "A GUI-based Windows Package Manager using winget"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+keywords = ["winget", "package manager", "windows", "gui"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Software Distribution",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/tboy1337/Windows-Package-Manager"
+Repository = "https://github.com/tboy1337/Windows-Package-Manager"
+
+[project.scripts]
+winget-pm = "main:main"
+
+[tool.setuptools]
+packages = ["core", "gui"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = ["data/*.json"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --cov=core --cov=gui --cov-report=html --cov-report=term"
+testpaths = ["tests"]
+timeout = 30
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["core", "gui"]
+omit = [
+    "tests/*",
+    "setup.py",
+    "*/venv/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311", "py312", "py313"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | htmlcov
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["core", "gui"]
+
+[tool.pylint.messages_control]
+disable = [
+    "C0103",  # Invalid name (for variables that are fine as they are)
+    "R0903",  # Too few public methods (for data classes, etc.)
+]
+
+[tool.pylint.format]
+max-line-length = "88"
