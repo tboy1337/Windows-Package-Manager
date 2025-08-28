@@ -72,14 +72,6 @@ Logs are automatically created in the `logs/` directory with:
 6. Format code: `black core gui main.py`
 7. Submit a pull request
 
-## Code Quality
-
-- **Pylint Score**: 9.90/10
-- **Test Coverage**: 100%
-- **Code Formatting**: Black
-- **Type Hints**: Comprehensive typing
-- **Documentation**: Full docstring coverage
-
 ## License
 
 MIT License - see LICENSE.txt for details
