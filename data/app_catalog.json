@@ -7,13 +7,13 @@
   },
   {
     "name": "7-Zip",
-    "id": "IgorPavlov.7zip",
+    "id": "7zip.7zip",
     "category": "Utilities",
     "description": "File archiver with a high compression ratio."
   },
   {
     "name": "Adobe Acrobat Reader",
-    "id": "Adobe.Acrobat.Reader.64bit",
+    "id": "Adobe.Acrobat.Reader.32-bit",
     "category": "Productivity",
     "description": "View, print, and annotate PDF documents."
   },
@@ -46,12 +46,6 @@
     "id": "AutoHotkey.AutoHotkey",
     "category": "Utilities",
     "description": "Scripting language for desktop automation."
-  },
-  {
-    "name": "Battle.net",
-    "id": "Blizzard.Battle.net",
-    "category": "Gaming",
-    "description": "Blizzard's online gaming platform."
   },
   {
     "name": "Bitwarden",
@@ -107,12 +101,7 @@
     "category": "Development",
     "description": "AI-powered code editor."
   },
-  {
-    "name": "CutePDF Writer",
-    "id": "AcroSoftware.CutePDFWriter",
-    "category": "Productivity",
-    "description": "Virtual printer to create PDF files."
-  },
+
   {
     "name": "Discord",
     "id": "Discord.Discord",
@@ -126,22 +115,10 @@
     "description": "Application for building and sharing containerized applications."
   },
   {
-    "name": "Draw.io (diagrams.net)",
-    "id": "JGraph.Drawio",
-    "category": "Productivity",
-    "description": "Diagram drawing application."
-  },
-  {
     "name": "Dropbox",
     "id": "Dropbox.Dropbox",
     "category": "Productivity",
     "description": "Cloud storage and file synchronization service."
-  },
-  {
-    "name": "Eclipse",
-    "id": "EclipseFoundation.Eclipse",
-    "category": "Development",
-    "description": "IDE primarily for Java development."
   },
   {
     "name": "Element",
@@ -174,26 +151,14 @@
     "description": "Image viewer, converter, and editor."
   },
   {
-    "name": "FileZilla",
-    "id": "FileZilla.FileZilla",
-    "category": "Utilities",
-    "description": "FTP, FTPS, and SFTP client."
-  },
-  {
     "name": "Foobar2000",
     "id": "PeterPawlowski.foobar2000",
     "category": "Media",
     "description": "Advanced freeware audio player."
   },
   {
-    "name": "Foxit PDF Reader",
-    "id": "Foxit.PDFReader",
-    "category": "Productivity",
-    "description": "PDF reader with annotation capabilities."
-  },
-  {
     "name": "GIMP",
-    "id": "GIMP.GIMP",
+    "id": "GIMP.GIMP.3",
     "category": "Media",
     "description": "Free and open source image editor."
   },
@@ -238,12 +203,6 @@
     "id": "Google.Chrome",
     "category": "Web Browsers",
     "description": "Fast, secure, and free web browser from Google."
-  },
-  {
-    "name": "Google Drive",
-    "id": "Google.Drive",
-    "category": "Productivity",
-    "description": "Cloud storage service by Google."
   },
   {
     "name": "Google Earth Pro",
@@ -414,28 +373,10 @@
     "description": "Free office suite."
   },
   {
-    "name": "Lutris",
-    "id": "Lutris.Lutris",
-    "category": "Gaming",
-    "description": "Open gaming platform for Linux."
-  },
-  {
     "name": "Malwarebytes",
     "id": "Malwarebytes.Malwarebytes",
     "category": "Security",
     "description": "Anti-malware software."
-  },
-  {
-    "name": "MediaMonkey",
-    "id": "VentisMedia.MediaMonkey",
-    "category": "Media",
-    "description": "Media organizer and player."
-  },
-  {
-    "name": "Microsoft 365",
-    "id": "Microsoft.365",
-    "category": "Productivity",
-    "description": "Productivity suite including Word, Excel, and PowerPoint."
   },
   {
     "name": "Microsoft Edge",
@@ -463,7 +404,7 @@
   },
   {
     "name": "MinGW",
-    "id": "MinGW.MinGW",
+    "id": "Chocolatey.ChocolateyGUI",
     "category": "Development",
     "description": "Minimalist GNU for Windows."
   },
@@ -484,12 +425,6 @@
     "id": "clsid2.mpc-hc",
     "category": "Media",
     "description": "Lightweight media player."
-  },
-  {
-    "name": "MusicBee",
-    "id": "MusicBee.MusicBee",
-    "category": "Media",
-    "description": "Music manager and player."
   },
   {
     "name": "MySQL",
@@ -528,12 +463,6 @@
     "description": "Cloud storage service by Microsoft."
   },
   {
-    "name": "OneNote",
-    "id": "Microsoft.OneNote",
-    "category": "Productivity",
-    "description": "Note-taking program by Microsoft."
-  },
-  {
     "name": "Open-Shell",
     "id": "Open-Shell.Open-Shell-Menu",
     "category": "Utilities",
@@ -552,20 +481,14 @@
     "description": "Free and open source hosted hypervisor for x86 virtualization."
   },
   {
-    "name": "Origin",
-    "id": "ElectronicArts.EAapp",
-    "category": "Gaming",
-    "description": "Digital distribution platform by EA."
-  },
-  {
     "name": "Paint.NET",
-    "id": "dotPDN.paint.net",
+    "id": "dotPDN.PaintDotNet",
     "category": "Media",
     "description": "Free image and photo editing software."
   },
   {
     "name": "PHP",
-    "id": "PHP.PHP",
+    "id": "PHP.PHP.8.3",
     "category": "Development",
     "description": "Popular general-purpose scripting language."
   },
@@ -576,12 +499,6 @@
     "description": "Universal chat client."
   },
   {
-    "name": "Playnite",
-    "id": "JosefNemec.Playnite",
-    "category": "Gaming",
-    "description": "Video game library manager."
-  },
-  {
     "name": "Plex",
     "id": "Plex.Plex",
     "category": "Media",
@@ -589,7 +506,7 @@
   },
   {
     "name": "PostgreSQL",
-    "id": "PostgreSQL.PostgreSQL",
+    "id": "PostgreSQL.PostgreSQL.17",
     "category": "Development",
     "description": "Advanced open source relational database."
   },
@@ -613,13 +530,13 @@
   },
   {
     "name": "PuTTY",
-    "id": "SimonTatham.PuTTY",
+    "id": "PuTTY.PuTTY",
     "category": "Utilities",
     "description": "SSH and telnet client."
   },
   {
     "name": "PyCharm",
-    "id": "JetBrains.PyCharm.Community",
+    "id": "JetBrains.PyCharm.Community.EAP",
     "category": "Development",
     "description": "Python IDE by JetBrains."
   },
@@ -684,12 +601,6 @@
     "description": "Utility for uninstalling software."
   },
   {
-    "name": "Ruby",
-    "id": "RubyInstallerTeam.Ruby",
-    "category": "Development",
-    "description": "Dynamic, open source programming language."
-  },
-  {
     "name": "Rufus",
     "id": "Rufus.Rufus",
     "category": "Utilities",
@@ -709,7 +620,7 @@
   },
   {
     "name": "Signal",
-    "id": "Signal.Signal",
+    "id": "OpenWhisperSystems.Signal",
     "category": "Communication",
     "description": "Private messaging app."
   },
@@ -832,18 +743,6 @@
     "id": "VideoLAN.VLC",
     "category": "Media",
     "description": "Free and open source multimedia player."
-  },
-  {
-    "name": "WhatsApp",
-    "id": "WhatsApp.WhatsApp",
-    "category": "Communication",
-    "description": "Messaging and video call app."
-  },
-  {
-    "name": "WhatsApp Business",
-    "id": "WhatsApp.WhatsAppBusiness",
-    "category": "Communication",
-    "description": "Business version of WhatsApp."
   },
   {
     "name": "Winamp",

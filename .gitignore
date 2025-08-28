@@ -25,6 +25,7 @@ build/
 data/app.db
 
 # Logs
+logs/
 *.log
 
 # OS generated files
