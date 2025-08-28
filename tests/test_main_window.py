@@ -139,11 +139,22 @@ class TestMainWindow(unittest.TestCase):
     @patch.object(AppDatabase, 'get_all_profiles', return_value=['test_profile'])
     @patch.object(AppDatabase, 'load_profile', return_value=['Test.ID'])
     def test_load_profile_success(self, mock_load, mock_get):
-        with patch('gui.main_window.simpledialog.askstring', return_value="test_profile"):
+        # Mock the _show_profile_selection_dialog method to return a selected profile
+        with patch.object(self.app, '_show_profile_selection_dialog', return_value="test_profile"):
             with patch('gui.main_window.messagebox.showinfo') as mock_info:
                 self.app.load_profile()
                 self.assertIn('Test.ID', self.app.selected_packages)
-                mock_info.assert_called_once_with("Info", "Profile loaded")
+                mock_info.assert_called_once_with("Info", "Profile 'test_profile' loaded successfully")
+
+    @patch.object(AppDatabase, 'get_all_profiles', return_value=['test_profile'])
+    def test_load_profile_cancelled(self, mock_get):
+        # Mock the _show_profile_selection_dialog method to return empty string (cancelled)
+        with patch.object(self.app, '_show_profile_selection_dialog', return_value=""):
+            with patch('gui.main_window.messagebox.showinfo') as mock_info:
+                self.app.load_profile()
+                # Should not load anything or show any message when cancelled
+                mock_info.assert_not_called()
+                self.assertEqual(len(self.app.selected_packages), 0)
 
     def test_export_script_no_packages(self):
         self.app.selected_packages = set()

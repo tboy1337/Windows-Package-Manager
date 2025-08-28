@@ -65,6 +65,84 @@ class Tooltip:
         label.pack()
 
 
+class ProfileSelectionDialog(tk.Toplevel):
+    """Dialog for selecting a profile from a list."""
+    
+    def __init__(self, parent, profiles: List[str]):
+        super().__init__(parent)
+        self.selected_profile = ""
+        self.profiles = profiles
+        
+        # Dialog configuration
+        self.title("Select Profile")
+        self.geometry("300x200")
+        self.resizable(False, False)
+        self.transient(parent)
+        self.grab_set()
+        
+        # Center the dialog
+        self.geometry(f"+{parent.winfo_rootx() + 50}+{parent.winfo_rooty() + 50}")
+        
+        self.create_widgets()
+        
+    def create_widgets(self):
+        """Create the dialog widgets."""
+        # Label
+        label = ttk.Label(self, text="Select a profile to load:")
+        label.pack(pady=10)
+        
+        # Listbox with scrollbar
+        list_frame = ttk.Frame(self)
+        list_frame.pack(fill="both", expand=True, padx=20, pady=10)
+        
+        scrollbar = ttk.Scrollbar(list_frame)
+        scrollbar.pack(side="right", fill="y")
+        
+        self.listbox = tk.Listbox(list_frame, yscrollcommand=scrollbar.set)
+        self.listbox.pack(side="left", fill="both", expand=True)
+        scrollbar.config(command=self.listbox.yview)
+        
+        # Populate listbox
+        for profile in self.profiles:
+            self.listbox.insert(tk.END, profile)
+            
+        # Select first item by default if available
+        if self.profiles:
+            self.listbox.selection_set(0)
+            
+        # Double-click to select
+        self.listbox.bind("<Double-Button-1>", lambda _: self.ok_clicked())
+        
+        # Buttons
+        button_frame = ttk.Frame(self)
+        button_frame.pack(pady=10)
+        
+        ok_button = ttk.Button(button_frame, text="OK", command=self.ok_clicked)
+        ok_button.pack(side="left", padx=5)
+        
+        cancel_button = ttk.Button(button_frame, text="Cancel", command=self.cancel_clicked)
+        cancel_button.pack(side="left", padx=5)
+        
+        # Keyboard bindings
+        self.bind("<Return>", lambda _: self.ok_clicked())
+        self.bind("<Escape>", lambda _: self.cancel_clicked())
+        
+        # Focus on listbox
+        self.listbox.focus_set()
+        
+    def ok_clicked(self):
+        """Handle OK button click."""
+        selection = self.listbox.curselection()
+        if selection:
+            self.selected_profile = self.listbox.get(selection[0])
+        self.destroy()
+        
+    def cancel_clicked(self):
+        """Handle Cancel button click."""
+        self.selected_profile = ""
+        self.destroy()
+
+
 class MainWindow(tk.Tk):
     """Main application window for Windows Package Manager."""
 
@@ -301,13 +379,28 @@ class MainWindow(tk.Tk):
         if not profiles:
             messagebox.showinfo("Info", "No profiles saved")
             return
-        name = simpledialog.askstring("Load Profile", "Enter profile name:")
-        if name and name in profiles:
-            selections = self.db.load_profile(name)
+        
+        # Create profile selection dialog
+        selected_profile = self._show_profile_selection_dialog(profiles)
+        if selected_profile:
+            selections = self.db.load_profile(selected_profile)
             self.selected_packages = set(selections)
             for pkg_id, (_, var) in self.checkbuttons.items():
                 var.set(pkg_id in self.selected_packages)
-            messagebox.showinfo("Info", "Profile loaded")
+            messagebox.showinfo("Info", f"Profile '{selected_profile}' loaded successfully")
+        
+    def _show_profile_selection_dialog(self, profiles: List[str]) -> str:
+        """Show a dialog to select a profile from the available profiles.
+        
+        Args:
+            profiles: List of available profile names
+            
+        Returns:
+            Selected profile name, or empty string if cancelled
+        """
+        dialog = ProfileSelectionDialog(self, profiles)
+        self.wait_window(dialog)
+        return dialog.selected_profile
 
     def export_script(self) -> None:
         """Export selected packages as a batch script."""
