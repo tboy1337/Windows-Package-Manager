@@ -25,7 +25,7 @@ class TestWingetManager(unittest.TestCase):
             self.assertFalse(WingetManager.is_admin())
 
     def test_is_admin_exception(self):
-        with patch('ctypes.windll.shell32.IsUserAnAdmin', side_effect=Exception):
+        with patch('ctypes.windll.shell32.IsUserAnAdmin', side_effect=OSError):
             self.assertFalse(WingetManager.is_admin())
 
     def test_parse_search_output_empty(self):
@@ -79,7 +79,7 @@ Firefox                            Mozilla.Firefox              128.0.3         
     def test_install_package_success(self, mock_run):
         mock_run.return_value = MagicMock(returncode=0, stdout="Installed", stderr="")
         result = WingetManager.install_package('App.ID')
-        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True)
+        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True, check=False)
         self.assertTrue(result['success'])
         self.assertEqual(result['stdout'], "Installed")
         self.assertEqual(result['stderr'], "")
@@ -88,7 +88,7 @@ Firefox                            Mozilla.Firefox              128.0.3         
     def test_install_package_failure(self, mock_run):
         mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="Error")
         result = WingetManager.install_package('App.ID')
-        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True)
+        mock_run.assert_called_once_with(['winget', 'install', '--id', 'App.ID', '--exact', '--disable-interactivity', '--silent', '--accept-package-agreements', '--accept-source-agreements'], capture_output=True, text=True, check=False)
         self.assertFalse(result['success'])
         self.assertEqual(result['stderr'], "Error")
 

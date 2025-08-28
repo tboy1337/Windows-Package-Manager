@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import tkinter as tk
-from gui.main_window import MainWindow
+from gui.main_window import MainWindow, Tooltip
 import sys
 import os
 from core.winget_manager import WingetManager
@@ -46,7 +46,7 @@ class TestMainWindow(unittest.TestCase):
 
     @patch('gui.main_window.json.load')
     def test_load_apps_error(self, mock_load):
-        mock_load.side_effect = Exception("Test error")
+        mock_load.side_effect = FileNotFoundError("Test error")
         with patch('gui.main_window.messagebox.showerror') as mock_msg:
             apps = self.app.load_apps()
             self.assertEqual(apps, [])
@@ -54,7 +54,7 @@ class TestMainWindow(unittest.TestCase):
 
     @patch('gui.main_window.json.load')
     def test_load_categories_error(self, mock_load):
-        mock_load.side_effect = Exception("Test error")
+        mock_load.side_effect = FileNotFoundError("Test error")
         with patch('gui.main_window.messagebox.showerror') as mock_msg:
             cats = self.app.load_categories()
             self.assertEqual(cats, [])
@@ -157,7 +157,7 @@ class TestMainWindow(unittest.TestCase):
         with patch('builtins.open') as mock_open:
             with patch('gui.main_window.messagebox.showinfo') as mock_info:
                 self.app.export_script()
-                mock_open.assert_called_once_with("test.cmd", 'w')
+                mock_open.assert_called_once_with("test.cmd", 'w', encoding='utf-8')
                 mock_info.assert_called_once_with("Info", "Script exported successfully")
 
     def test_perform_search_clear_previous(self):
@@ -173,23 +173,154 @@ class TestMainWindow(unittest.TestCase):
         self.assertEqual(len(children), 1)
         self.assertIn("No results found", children[0].cget("text"))
 
-import time
-@patch.object(WingetManager, 'is_available', return_value=True)
-@patch.object(Installer, 'install_packages')
-def test_install_selected_callback(self, mock_install_pkg, mock_admin, mock_avail):
-    self.app.selected_packages = {'Test.ID'}
-    orig_install = self.app.installer.install_packages
-    def wrapped_install(*args, **kwargs):
-        return orig_install(*args, **kwargs)
-    with patch.object(self.app.installer, 'install_packages', side_effect=wrapped_install) as mock_install:
-        self.app.install_selected()
-        thread = mock_install.return_value
-        thread.join(timeout=5)
-        self.assertFalse(thread.is_alive())
-    self.app.update()
-    log_content = self.app.log_text.get('1.0', 'end')
-    self.assertIn("Installation started...", log_content)
-    self.assertIn("Test.ID: Success", log_content)
+    @patch.object(WingetManager, 'is_available', return_value=True)
+    def test_install_selected_callback_success(self, mock_avail):
+        # Test the callback handling for successful installation
+        self.app.selected_packages = {'Test.ID'}
+        
+        # Mock the installer to call the callback directly
+        def mock_install_packages(package_ids, callback):
+            # Simulate successful installation
+            if callback:
+                callback('Test.ID', {'success': True})
+            # Return a mock thread that's already done
+            import threading
+            thread = threading.Thread(target=lambda: None)
+            thread.start()
+            thread.join()
+            return thread
+            
+        with patch.object(self.app.installer, 'install_packages', side_effect=mock_install_packages):
+            self.app.install_selected()
+            
+        # Check log content
+        self.app.update()
+        log_content = self.app.log_text.get('1.0', 'end')
+        self.assertIn("Installation started...", log_content)
+        self.assertIn("Test.ID: Success", log_content)
+
+    @patch.object(WingetManager, 'is_available', return_value=True)
+    def test_install_selected_callback_failure(self, mock_avail):
+        # Test the callback handling for failed installation
+        self.app.selected_packages = {'Test.ID'}
+        
+        # Mock the installer to call the callback with failure
+        def mock_install_packages(package_ids, callback):
+            # Simulate failed installation with error
+            if callback:
+                callback('Test.ID', {'success': False, 'error': 'Installation failed'})
+            # Return a mock thread that's already done
+            import threading
+            thread = threading.Thread(target=lambda: None)
+            thread.start()
+            thread.join()
+            return thread
+            
+        with patch.object(self.app.installer, 'install_packages', side_effect=mock_install_packages):
+            self.app.install_selected()
+            
+        # Check log content shows the error
+        self.app.update()
+        log_content = self.app.log_text.get('1.0', 'end')
+        self.assertIn("Installation started...", log_content)
+        self.assertIn("Test.ID: Installation failed", log_content)
+
+    @patch.object(WingetManager, 'is_available', return_value=True)
+    def test_install_selected_callback_failed_no_error(self, mock_avail):
+        # Test the callback handling for failed installation without specific error
+        self.app.selected_packages = {'Test.ID'}
+        
+        def mock_install_packages(package_ids, callback):
+            # Simulate failed installation without error message
+            if callback:
+                callback('Test.ID', {'success': False})
+            import threading
+            thread = threading.Thread(target=lambda: None)
+            thread.start()
+            thread.join()
+            return thread
+            
+        with patch.object(self.app.installer, 'install_packages', side_effect=mock_install_packages):
+            self.app.install_selected()
+            
+        # Check log content shows generic "Failed" message
+        self.app.update()
+        log_content = self.app.log_text.get('1.0', 'end')
+        self.assertIn("Installation started...", log_content)
+        self.assertIn("Test.ID: Failed", log_content)
+
+class TestTooltip(unittest.TestCase):
+    def setUp(self):
+        self.root = tk.Tk()
+        self.root.withdraw()  # Hide the root window
+        self.widget = tk.Button(self.root, text="Test Button")
+        self.widget.pack()
+        
+    def tearDown(self):
+        if hasattr(self, 'tooltip') and self.tooltip:
+            if hasattr(self.tooltip, 'tooltip') and self.tooltip.tooltip:
+                self.tooltip.tooltip.destroy()
+        self.root.destroy()
+        
+    def test_tooltip_init(self):
+        tooltip = Tooltip(self.widget, "Test tooltip text")
+        self.assertEqual(tooltip.widget, self.widget)
+        self.assertEqual(tooltip.text, "Test tooltip text")
+        self.assertIsNone(tooltip.tooltip)
+        self.assertIsNone(tooltip.id)
+        
+    def test_tooltip_enter(self):
+        tooltip = Tooltip(self.widget, "Test tooltip")
+        tooltip.enter()
+        self.assertIsNotNone(tooltip.id)
+        # Cancel the scheduled call to avoid showing tooltip
+        if tooltip.id:
+            self.widget.after_cancel(tooltip.id)
+            tooltip.id = None
+            
+    def test_tooltip_leave_with_scheduled_show(self):
+        tooltip = Tooltip(self.widget, "Test tooltip")
+        # Simulate enter first
+        tooltip.enter()
+        scheduled_id = tooltip.id
+        self.assertIsNotNone(scheduled_id)
+        
+        # Now leave should cancel the scheduled show
+        tooltip.leave()
+        self.assertIsNone(tooltip.id)
+        
+    def test_tooltip_leave_with_visible_tooltip(self):
+        tooltip = Tooltip(self.widget, "Test tooltip")
+        # Manually create a tooltip window
+        tooltip.tooltip = tk.Toplevel(self.widget)
+        tooltip.tooltip.wm_overrideredirect(True)
+        
+        # Leave should destroy the tooltip
+        tooltip.leave()
+        self.assertIsNone(tooltip.tooltip)
+        
+    def test_tooltip_show_with_text(self):
+        tooltip = Tooltip(self.widget, "Test tooltip text")
+        # Position widget so we can get its coordinates
+        self.widget.update()
+        tooltip.show()
+        
+        self.assertIsNotNone(tooltip.tooltip)
+        self.assertTrue(tooltip.tooltip.winfo_exists())
+        
+        # Clean up
+        tooltip.tooltip.destroy()
+        tooltip.tooltip = None
+        
+    def test_tooltip_show_without_text(self):
+        tooltip = Tooltip(self.widget, "")
+        tooltip.show()
+        self.assertIsNone(tooltip.tooltip)
+        
+        # Test with None text
+        tooltip = Tooltip(self.widget, None)
+        tooltip.show()
+        self.assertIsNone(tooltip.tooltip)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,32 @@
+{
+  "app": {
+    "name": "Windows Package Manager",
+    "version": "1.0.0",
+    "window": {
+      "width": 800,
+      "height": 600,
+      "resizable": true
+    },
+    "theme": "default"
+  },
+  "winget": {
+    "timeout": 300,
+    "retry_attempts": 3,
+    "silent_install": true,
+    "accept_agreements": true
+  },
+  "logging": {
+    "level": "INFO",
+    "max_log_files": 30,
+    "file_size_mb": 10
+  },
+  "database": {
+    "backup_count": 5,
+    "auto_backup": true
+  },
+  "ui": {
+    "auto_save_selections": true,
+    "show_tooltips": true,
+    "column_layout": "auto"
+  }
+}
