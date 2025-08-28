@@ -1,12 +1,13 @@
 """Main window GUI module for Windows Package Manager."""
 
-import tkinter as tk
-from tkinter import ttk, messagebox, filedialog, simpledialog
 import json
+import tkinter as tk
+from tkinter import filedialog, messagebox, simpledialog, ttk
 from typing import Dict, List
-from core.winget_manager import WingetManager
+
 from core.app_database import AppDatabase
 from core.installer import Installer
+from core.winget_manager import WingetManager
 
 
 class Tooltip:
@@ -122,14 +123,17 @@ class MainWindow(tk.Tk):
         for cat in self.categories:
             outer_frame = ttk.Frame(self.notebook)
             scroll_canvas = tk.Canvas(outer_frame)
-            scrollbar = ttk.Scrollbar(outer_frame, orient="vertical", command=scroll_canvas.yview)
+            scrollbar = ttk.Scrollbar(
+                outer_frame, orient="vertical", command=scroll_canvas.yview
+            )
             scroll_canvas.configure(yscrollcommand=scrollbar.set)
             scrollbar.pack(side="right", fill="y")
             scroll_canvas.pack(side="left", fill="both", expand=True)
             inner_frame = ttk.Frame(scroll_canvas)
             scroll_canvas.create_window((0, 0), window=inner_frame, anchor="nw")
             inner_frame.bind(
-                "<Configure>", lambda e, c=scroll_canvas: c.configure(scrollregion=c.bbox("all"))
+                "<Configure>",
+                lambda e, c=scroll_canvas: c.configure(scrollregion=c.bbox("all")),
             )
             scroll_canvas.bind(
                 "<MouseWheel>",
@@ -143,7 +147,9 @@ class MainWindow(tk.Tk):
 
         # Search results frame (hidden initially)
         self.search_results_frame = ttk.Frame(self.notebook)
-        self.notebook.add(self.search_results_frame, text="Search Results", state="hidden")
+        self.notebook.add(
+            self.search_results_frame, text="Search Results", state="hidden"
+        )
 
         # Buttons
         button_frame = ttk.Frame(self)
@@ -152,15 +158,25 @@ class MainWindow(tk.Tk):
             button_frame, text="Install Selected", command=self.install_selected
         )
         install_btn.pack(side="left")
-        select_all_btn = ttk.Button(button_frame, text="Select All", command=self.select_all)
+        select_all_btn = ttk.Button(
+            button_frame, text="Select All", command=self.select_all
+        )
         select_all_btn.pack(side="left")
-        deselect_all_btn = ttk.Button(button_frame, text="Deselect All", command=self.deselect_all)
+        deselect_all_btn = ttk.Button(
+            button_frame, text="Deselect All", command=self.deselect_all
+        )
         deselect_all_btn.pack(side="left")
-        save_btn = ttk.Button(button_frame, text="Save Profile", command=self.save_profile)
+        save_btn = ttk.Button(
+            button_frame, text="Save Profile", command=self.save_profile
+        )
         save_btn.pack(side="left")
-        load_btn = ttk.Button(button_frame, text="Load Profile", command=self.load_profile)
+        load_btn = ttk.Button(
+            button_frame, text="Load Profile", command=self.load_profile
+        )
         load_btn.pack(side="left")
-        export_btn = ttk.Button(button_frame, text="Export Script", command=self.export_script)
+        export_btn = ttk.Button(
+            button_frame, text="Export Script", command=self.export_script
+        )
         export_btn.pack(side="left")
 
         # Log

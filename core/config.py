@@ -1,8 +1,8 @@
 """Configuration management module for Windows Package Manager."""
+
 import json
-import os
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from .logger import logger
 
@@ -84,7 +84,11 @@ class Config:
             override: Override values from file
         """
         for key, value in override.items():
-            if key in default and isinstance(default[key], dict) and isinstance(value, dict):
+            if (
+                key in default
+                and isinstance(default[key], dict)
+                and isinstance(value, dict)
+            ):
                 self._merge_config(default[key], value)
             else:
                 default[key] = value
@@ -117,7 +121,9 @@ class Config:
                 value = value[part]
             return value
         except (KeyError, TypeError):
-            logger.warning(f"Configuration key '{key}' not found, using default: {default}")
+            logger.warning(
+                f"Configuration key '{key}' not found, using default: {default}"
+            )
             return default
 
     def set(self, key: str, value: Any) -> None:

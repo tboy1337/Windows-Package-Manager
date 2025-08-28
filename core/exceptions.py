@@ -1,4 +1,5 @@
 """Custom exceptions for Windows Package Manager."""
+
 from typing import Optional
 
 
@@ -28,7 +29,10 @@ class WingetExecutionError(WingetPackageManagerError):
     """Raised when winget command execution fails."""
 
     def __init__(
-        self, message: str, command: Optional[str] = None, return_code: Optional[int] = None
+        self,
+        message: str,
+        command: Optional[str] = None,
+        return_code: Optional[int] = None,
     ) -> None:
         super().__init__(message, 1002)
         self.command = command

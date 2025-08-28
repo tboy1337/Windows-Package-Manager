@@ -1,6 +1,6 @@
 """Logging configuration module for Windows Package Manager."""
+
 import logging
-import os
 from datetime import datetime
 from pathlib import Path
 from typing import Optional

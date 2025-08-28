@@ -18,7 +18,9 @@ def is_admin():
 
 if not is_admin():
     # Relaunch as admin
-    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+    ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", sys.executable, " ".join(sys.argv), None, 1
+    )
     sys.exit(0)
 
 # Import after admin check to avoid issues

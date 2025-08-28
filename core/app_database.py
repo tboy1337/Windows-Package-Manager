@@ -1,7 +1,7 @@
 """Database module for managing application profiles and data."""
 
-import sqlite3
 import json
+import sqlite3
 from typing import List
 
 
@@ -14,7 +14,9 @@ class AppDatabase:
         Args:
             db_path: Path to the SQLite database file
         """
-        self.conn = sqlite3.connect(db_path, check_same_thread=False)  # Allow multi-thread access
+        self.conn = sqlite3.connect(
+            db_path, check_same_thread=False
+        )  # Allow multi-thread access
         self.create_tables()
 
     def create_tables(self) -> None:
@@ -51,7 +53,9 @@ class AppDatabase:
         Returns:
             List of package IDs in the profile
         """
-        cursor = self.conn.execute("SELECT selections FROM profiles WHERE name = ?", (name,))
+        cursor = self.conn.execute(
+            "SELECT selections FROM profiles WHERE name = ?", (name,)
+        )
         result = cursor.fetchone()
         return json.loads(result[0]) if result else []
 
