@@ -8,6 +8,8 @@ from typing import Dict, List, Optional
 from .config import config
 from .exceptions import (
     AdminPrivilegesRequiredError,
+    InstallationFailedError,
+    PackageNotFoundError,
     WingetExecutionError,
     WingetNotAvailableError,
 )
@@ -50,13 +52,13 @@ class WingetManager:
             return is_available
         except subprocess.TimeoutExpired:
             logger.error("Winget availability check timed out")
-            raise WingetNotAvailableError("Winget availability check timed out")
+            raise WingetNotAvailableError("Winget availability check timed out") from None
         except FileNotFoundError:
             logger.error("Winget executable not found")
-            raise WingetNotAvailableError("Winget executable not found")
+            raise WingetNotAvailableError("Winget executable not found") from None
         except Exception as e:
             logger.error(f"Unexpected error checking winget availability: {e}")
-            raise WingetNotAvailableError(f"Unexpected error: {e}")
+            raise WingetNotAvailableError(f"Unexpected error: {e}") from e
 
     @staticmethod
     def is_admin() -> bool:
@@ -272,8 +274,6 @@ class WingetManager:
 
                     if "not found" in stderr_lower or "not found" in stdout_lower:
                         logger.error(f"Package not found: {package_id}")
-                        from .exceptions import PackageNotFoundError
-
                         raise PackageNotFoundError(package_id)
 
                     logger.warning(
@@ -317,8 +317,6 @@ class WingetManager:
         # All attempts failed
         error_msg = f"Failed to install {package_id} after {retry_count + 1} attempts"
         logger.error(error_msg)
-        from .exceptions import InstallationFailedError
-
         raise InstallationFailedError(
             package_id,
             last_result.get("stderr", "Unknown error") if last_result else "No result",

@@ -4,7 +4,7 @@ import threading
 import time
 from typing import Any, Callable, Dict, List, Optional
 
-from .config import config
+# from .config import config  # Not directly used in this module
 from .exceptions import (
     AdminPrivilegesRequiredError,
     InstallationFailedError,
@@ -128,7 +128,8 @@ class Installer:
 
         if not package_ids:
             logger.warning("No packages to install")
-            return threading.Thread()
+            # Return a dummy thread for empty package list
+            return threading.Thread(target=lambda: None)
 
         logger.info(f"Starting installation of {len(package_ids)} packages")
         self._current_progress = InstallationProgress(len(package_ids))
